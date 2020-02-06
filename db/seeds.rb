@@ -7,39 +7,34 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-#Appointment.destroy_all
-#City.destroy_all
-#Connect.destroy_all
-#Doctor.destroy_all
-#Patient.destroy_all
-#Specialty.destroy_all
 
-=begin
+#array contenant les id de city
 city_id = []
-
 5.times do
   city = City.create!(name: Faker::Address.city)
   puts "Création d'une ville"
-  city_id << city.id
+  city_id << city.id #inserer id dans array de id
 end
-
+#array contenant les id de doctor
 doctor_id = []
 20.times do
   doctor = Doctor.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, zip_code: Faker::IDNumber.valid, city_id: city_id.sample )
   puts "Création d'un docteur"
-  doctor_id << doctor.id
+  doctor_id << doctor.id #inserer id dans array de id
 end
+#array contenant les id de patient
 patient_id = []
 20.times do
   patient = Patient.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, city_id: city_id.sample)
   puts "Création d'un patient"
-  patient_id << patient.id
+  patient_id << patient.id #inserer id dans array de id
 end
+#array contenant les id de specialty
 specialty_id =[]
 5.times do
-  specialty = Specialty.create!(name: Faker::Address.city)
+  specialty = Specialty.create!(name: Faker::Job.key_skill)
   puts "Création d'une spécialité"
-  specialty_id << specialty.id
+  specialty_id << specialty.id #inserer id dans array de id
 end
 5.times do
   appointment = Appointment.create!(date: Faker::Date.forward(days: 60), doctor_id: doctor_id.sample, patient_id: patient_id.sample, city_id: city_id.sample)
@@ -50,7 +45,7 @@ end
   puts "Création d'une connection"
 end
 
-=end
+
 
 
 
